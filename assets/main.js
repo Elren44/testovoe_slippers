@@ -13,7 +13,7 @@ function getTime(time) {
 		seconds: seconds > 9 ? seconds : "0" + seconds,
 	};
 }
-const nowDate = new Date("2023", "09", "21", "11");
+const nowDate = new Date("2023", "09", "22", "02");
 // nowDate.setHours(new Date().getHours() + HOURS_TO_EXPIRED);
 // nowDate.setMinutes(new Date().getMinutes() + MINUTES_TO_EXPIRED);
 // nowDate.setSeconds(new Date().getSeconds() + SECONDS_TO_EXPIRED);
