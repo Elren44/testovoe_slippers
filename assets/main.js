@@ -1,7 +1,7 @@
-// const timer = document.getElementById("timer");
-// const HOURS_TO_EXPIRED = 4;
-// const MINUTES_TO_EXPIRED = 51;
-// const SECONDS_TO_EXPIRED = 16;
+const timer = document.getElementById("timer");
+const HOURS_TO_EXPIRED = 4;
+const MINUTES_TO_EXPIRED = 51;
+const SECONDS_TO_EXPIRED = 16;
 
 function getTime(time) {
 	let hours = Math.floor(time / 1000 / 60 / 60) % 24;
@@ -13,35 +13,41 @@ function getTime(time) {
 		seconds: seconds > 9 ? seconds : "0" + seconds,
 	};
 }
-const nowDate = new Date("2023", "09", "22", "02");
-// nowDate.setHours(new Date().getHours() + HOURS_TO_EXPIRED);
-// nowDate.setMinutes(new Date().getMinutes() + MINUTES_TO_EXPIRED);
-// nowDate.setSeconds(new Date().getSeconds() + SECONDS_TO_EXPIRED);
+const nowDate = new Date();
+nowDate.setHours(new Date().getHours() + HOURS_TO_EXPIRED);
+nowDate.setMinutes(new Date().getMinutes() + MINUTES_TO_EXPIRED);
+nowDate.setSeconds(new Date().getSeconds() + SECONDS_TO_EXPIRED);
 const endTimer = new Date(nowDate).getTime();
 
-function startTimer() {
+function startTimer(end) {
 	let x = setInterval(function () {
 		// Getting current time in required format
 		const currentTime = new Date().getTime();
-		const endTime = endTimer;
+
 
 		// Calculating the difference
-		let remaining = endTime - currentTime;
+		let remaining = end - currentTime;
 
 		let time = getTime(remaining);
 
 		// Output the remaining time
-		document.getElementById("timer").innerHTML =
+		timer.innerHTML =
 			time.hours + ":" + time.minutes + ":" + time.seconds;
 
 		// Output for over time
 		if (remaining < 0) {
 			clearInterval(x);
 			document.getElementById("timer").innerHTML = "EXPIRED";
+			const nowDate = new Date();
+			nowDate.setHours(new Date().getHours() + 4);
+			nowDate.setMinutes(new Date().getMinutes() + 51);
+			nowDate.setSeconds(new Date().getSeconds() + 16);
+			const endTimer = new Date(nowDate).getTime();
+			startTimer(endTimer);
 		}
 	}, 1000);
 }
-startTimer();
+startTimer(endTimer);
 
 //rating
 
